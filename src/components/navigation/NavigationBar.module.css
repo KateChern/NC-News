@@ -5,7 +5,8 @@
   justify-content: space-between;
   align-items: center;
   padding: 10px 22px;
-  background-color: #e9ecef;
+  background-color: #515960;
+  /* background-color: #e9ecef; */
   text-shadow: 1px 1px 1px rgb(0 0 0 / 30%);
   margin-bottom: 5vh;
 }
@@ -14,11 +15,11 @@ a {
 }
 
 .header h1 {
-  color: #323941;
+  color: #e9ecef;
   font-family: "Roboto", Sans-Serif;
   margin: 0 auto;
 }
 .login {
-  color: #272b30;
+  color: #e9ecef;
   margin: 0 auto;
 }

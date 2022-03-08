@@ -1,0 +1,34 @@
+.container {
+  padding: 10px 15px;
+}
+.flex {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  color: #93c1d1;
+}
+.text {
+  font-family: "Average Sans", Sans-Serif;
+  color: #aaa8a8;
+  font-size: 1.1rem;
+  line-height: 1.7rem;
+}
+.title {
+  background-color: #515960;
+  border-color: #2c3134;
+  color: #fdfdf5;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  height: 6rem;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  font-family: "Goudy Bookletter 1911", Serif;
+  margin: 0 -10px 2rem -10px;
+}
+.topic {
+  color: #9bafb6;
+}
