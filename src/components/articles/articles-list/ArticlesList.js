@@ -6,17 +6,28 @@ import * as api from "../../../apis/articleApi";
 
 const ArticleList = () => {
   const [articles, setArticles] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+
   const getArticles = () => {
-    api.fetchArticles().then((articlesData) => {
-      console.log(articlesData);
-      setArticles(articlesData);
-    });
+    api
+      .fetchArticles()
+      .then((articlesData) => {
+        console.log(articlesData);
+        setArticles(articlesData);
+      })
+      .catch((e) => {
+        setError(e);
+      });
   };
 
   useEffect(() => {
+    setIsLoading(true);
     getArticles();
+    setIsLoading(false);
   }, []);
-
+  if (isLoading) return <p>Loading...</p>;
+  if (error) return <p>No articles found, try again later</p>;
   return (
     <section className={classes.container}>
       {articles.map((article) => (
