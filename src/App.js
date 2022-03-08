@@ -5,6 +5,7 @@ import { useState } from "react";
 import NavigationBar from "./components/navigation/NavigationBar";
 import ArticleList from "./components/articles/articles-list/ArticlesList";
 import * as api from "./apis/articleApi";
+import ArticleCard from "./components/articles/article-card/ArticleCard";
 
 function App() {
   return (
@@ -12,7 +13,9 @@ function App() {
       <NavigationBar />
       <div className="App">
         <Routes>
-          <Route path="/articles" exact element={<ArticleList />} />
+          <Route path="/" exact element={<ArticleList />} />
+
+          <Route path="/articles/:article_id" exact element={<ArticleCard />} />
         </Routes>
       </div>
     </Router>
