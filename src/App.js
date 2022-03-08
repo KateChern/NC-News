@@ -1,24 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import "bootswatch/dist/slate/bootstrap.min.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useState } from "react";
+import NavigationBar from "./components/navigation/NavigationBar";
+import ArticleList from "./components/articles/articles-list/ArticlesList";
+import * as api from "./apis/articleApi";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <NavigationBar />
+      <div className="App">
+        <Routes>
+          <Route path="/articles" exact element={<ArticleList />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
