@@ -43,6 +43,7 @@ const ArticleCard = () => {
   }, [article_id]);
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p>Article not found</p>;
+
   return (
     <article className={classes.container}>
       <h3 className={classes.title}>{article.title}</h3>

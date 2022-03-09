@@ -1,35 +1,39 @@
 import React, { useEffect } from "react";
-import classes from "./ArticlesList.module.css";
+import classes from "../../articles/articles-list/ArticlesList.module.css";
 import ArticleItem from "../article-item/ArticleItem";
 import { useState } from "react";
 import * as api from "../../../apis/articleApi";
+import { useParams } from "react-router-dom";
 
-const ArticleList = () => {
+const FilteredArticlesList = () => {
   const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const { topic } = useParams();
 
   const getArticles = () => {
     api
-      .fetchArticles()
+      .fetchArticles(topic)
       .then((articlesData) => {
         setArticles(articlesData);
+        setError(null);
       })
-      .catch((e) => {
-        setError(e);
+      .catch((error) => {
+        setError(error.response.data.msg);
+        setIsLoading(false);
       });
   };
-
   useEffect(() => {
     setIsLoading(true);
     getArticles();
     setIsLoading(false);
-  }, []);
+  }, [topic]);
+
   if (isLoading) return <p>Loading...</p>;
-  if (error) return <p>No articles found, try again later</p>;
+  if (error) return <p>{error} </p>;
   return (
     <>
-      <h4 className={classes.header}>All articles</h4>
+      <h4 className={classes.header}>Articles related to {topic} </h4>
       <section className={classes.container}>
         {articles.map((article) => (
           <ArticleItem article={article} key={article.article_id} />
@@ -39,4 +43,4 @@ const ArticleList = () => {
   );
 };
 
-export default ArticleList;
+export default FilteredArticlesList;

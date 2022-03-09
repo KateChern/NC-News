@@ -1,12 +1,14 @@
 .container {
   padding: 10px 15px;
+  margin: 5vh auto;
+  background-color: #3a3f44;
+  border-radius: 10px;
 }
 .flex {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-
   color: #93c1d1;
 }
 .text {
@@ -31,4 +33,36 @@
 }
 .topic {
   color: #9bafb6;
+}
+
+@media only screen and (min-width: 960px) {
+  .container {
+    max-width: 80%;
+    padding: 10px 20px;
+    margin: 8vh auto;
+  }
+  .text {
+    font-size: 1.4rem;
+    line-height: 2rem;
+  }
+  .header {
+    font-size: 1.8rem;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  .text {
+    font-size: 1.6rem;
+    line-height: 2.5rem;
+  }
+  .flex dt,
+  time {
+    font-size: 1.4rem;
+  }
+  .flex {
+    margin: 4vh auto 0 auto;
+  }
+  .title {
+    font-size: 2rem;
+  }
 }
