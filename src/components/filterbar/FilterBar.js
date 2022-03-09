@@ -6,6 +6,8 @@ import classes from "./FilterBar.module.css";
 const FilterBar = ({ onChangeTopic, onChangeOrder, onChangeSortValue }) => {
   const orderOptions = ["asc", "desc"];
   const [allTopics, setAllTopics] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
   const sortValues = [
     "created_at",
     "title",
@@ -25,14 +27,23 @@ const FilterBar = ({ onChangeTopic, onChangeOrder, onChangeSortValue }) => {
     onChangeOrder(e.target.value);
   };
   const getAllTopics = () => {
-    api.fetchTopics().then((data) => {
-      setAllTopics(data);
-    });
+    api
+      .fetchTopics()
+      .then((data) => {
+        setAllTopics(data);
+        setIsLoading(false);
+        setError(null);
+      })
+      .catch((error) => {
+        setError(error.response.data.msg);
+        setIsLoading(false);
+      });
   };
   useEffect(() => {
     getAllTopics();
   }, []);
-
+  if (isLoading) return <p>Loading...</p>;
+  if (error) return <p>{error} </p>;
   return (
     <div className={classes["topics-container"]}>
       <Link to={"/"}>
