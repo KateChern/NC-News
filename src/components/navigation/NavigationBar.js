@@ -5,7 +5,7 @@ import classes from "./NavigationBar.module.css";
 const NavigationBar = ({ user }) => {
   return (
     <header className={classes.header}>
-      <Link className={classes.link} to="/articles">
+      <Link to="/">
         <h1 className={classes.logo}>NC News</h1>
       </Link>
       <nav>

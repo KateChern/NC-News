@@ -5,13 +5,16 @@ import { RiHeart3Line } from "react-icons/ri";
 import Moment from "react-moment";
 
 const ArticleItem = ({ article }) => {
+  const title = article.title.toLowerCase();
+  const newTitle = title[0].toUpperCase() + title.slice(1, -1);
+
   return (
     <article className={classes.article}>
       <Link
         className={classes["article-body"]}
         to={`/articles/${article.article_id}`}
       >
-        <h4 className={classes.title}>{article.title}</h4>
+        <h4 className={classes.title}>{newTitle}</h4>
         <dl className={classes.text}>
           <dt className={classes.topic}>Topic: {article.topic}</dt>
           <dt className={classes.author}>By {article.author}</dt>

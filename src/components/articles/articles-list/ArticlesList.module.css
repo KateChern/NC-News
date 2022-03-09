@@ -25,7 +25,9 @@
   word-wrap: break-word;
   text-align: center;
   justify-content: center;
-  font-family: "Goudy Bookletter 1911", Serif;
+  font-family: "Libre Franklin", Sans-Serif;
+  line-height: 2rem;
+  font-size: 1.2rem;
 }
 .text {
   padding: 10px 15px;
@@ -59,4 +61,41 @@
 dt {
   margin: 0.5rem 0;
   font-weight: 500;
+}
+.header {
+  margin: 3rem auto 2rem auto;
+  font-family: "Average Sans", Sans-Serif;
+  padding: 0px 5px;
+}
+
+@media only screen and (min-width: 960px) {
+  .container {
+    grid-template-columns: repeat(auto-fit, minmax(370px, 650px));
+    grid-gap: 80px;
+    justify-content: space-between;
+  }
+  .header {
+    margin: 3rem auto 2rem auto;
+    font-size: 1.8rem;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  .text {
+    padding: 10px 22px;
+    font-size: 1.4rem;
+  }
+  .article-body h4 {
+    height: 6.5rem;
+    font-size: 1.8rem;
+    padding: 10px 22px;
+  }
+  .flex-row dt {
+    font-size: 1.4rem;
+    /* width: 1rem; */
+  }
+  .header {
+    margin: 6rem auto 4rem auto;
+    font-size: 2rem;
+  }
 }

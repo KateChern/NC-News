@@ -2,24 +2,44 @@
   width: 100%;
   height: 7vh;
   display: flex;
-  justify-content: space-between;
   align-items: center;
   padding: 10px 22px;
   background-color: #515960;
-  /* background-color: #e9ecef; */
   text-shadow: 1px 1px 1px rgb(0 0 0 / 30%);
   margin-bottom: 5vh;
+  justify-content: space-between;
 }
+
 a {
   text-decoration: none;
 }
 
 .header h1 {
   color: #e9ecef;
-  font-family: "Roboto", Sans-Serif;
+  /* font-family: "Roboto", Sans-Serif; */
   margin: 0 auto;
+  font-family: "Ribeye Marrow", cursive;
 }
 .login {
   color: #e9ecef;
   margin: 0 auto;
+  font-family: Raleway;
+}
+@media only screen and (min-width: 960px) {
+  .header {
+    justify-content: space-around;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  .login {
+    margin-right: 0;
+    font-size: 1.5rem;
+  }
+  .header h1 {
+    margin-left: 15vh;
+  }
+  .login {
+    margin-right: 15vh;
+  }
 }
