@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import NavigationBar from "./components/navigation/NavigationBar";
 import ArticleList from "./components/articles/articles-list/ArticlesList";
-import * as api from "./apis/articleApi";
 import ArticleCard from "./components/articles/article-card/ArticleCard";
 import FilterBar from "./components/filterbar/FilterBar";
 import FilteredArticlesList from "./components/articles/filtered-articles/FilteredArticles";

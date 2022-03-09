@@ -23,3 +23,9 @@ export const fetchTopics = () => {
     return res.data.topics;
   });
 };
+
+export const fetchCommentsById = (article_id) => {
+  return itemsApi.get(`/articles/${article_id}/comments`).then((res) => {
+    return res.data.comments;
+  });
+};
