@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import classes from "../../articles/articles-list/ArticlesList.module.css";
 import ArticleItem from "../article-item/ArticleItem";
 import { useState } from "react";
-import * as api from "../../../apis/articleApi";
+import * as api from "../../../apis/apis";
 import { useParams } from "react-router-dom";
 
 const FilteredArticlesList = () => {
@@ -12,10 +12,12 @@ const FilteredArticlesList = () => {
   const { topic } = useParams();
 
   const getArticles = () => {
+    setIsLoading(true);
     api
       .fetchArticles(topic)
       .then((articlesData) => {
         setArticles(articlesData);
+        setIsLoading(false);
         setError(null);
       })
       .catch((error) => {
@@ -24,9 +26,7 @@ const FilteredArticlesList = () => {
       });
   };
   useEffect(() => {
-    setIsLoading(true);
     getArticles();
-    setIsLoading(false);
   }, [topic]);
 
   if (isLoading) return <p>Loading...</p>;
