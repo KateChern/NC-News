@@ -7,6 +7,7 @@ import ArticleList from "./components/articles/articles-list/ArticlesList";
 import ArticleCard from "./components/articles/article-card/ArticleCard";
 import FilterBar from "./components/filterbar/FilterBar";
 import FilteredArticlesList from "./components/articles/filtered-articles/FilteredArticles";
+import AuthForm from "./components/auth/AuthForm";
 
 function App() {
   const [topic, setTopic] = useState({
@@ -15,7 +16,7 @@ function App() {
   });
   const [order, setOrder] = useState("asc");
   const [sortValue, setSortValue] = useState("title");
-
+  const [user, setUser] = useState("lurker");
   const onChangeTopic = (newTopicValue) => {
     setTopic(newTopicValue);
   };
@@ -25,10 +26,12 @@ function App() {
   const onChangeSortValue = (newSortValue) => {
     setSortValue(newSortValue);
   };
-
+  const onChangeUser = (newUser) => {
+    setUser(newUser);
+  };
   return (
     <Router>
-      <NavigationBar />
+      <NavigationBar user={user} />
       <FilterBar
         topic={topic}
         order={order}
@@ -40,6 +43,11 @@ function App() {
       <div className="App">
         <Routes>
           <Route path="/" exact element={<ArticleList />} />
+          <Route
+            path="/auth"
+            exact
+            element={<AuthForm onChangeUser={onChangeUser} user={user} />}
+          />
           <Route
             path="/topics/:topic/articles"
             exact

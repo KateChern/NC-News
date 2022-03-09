@@ -9,10 +9,16 @@ const NavigationBar = ({ user }) => {
         <h1 className={classes.logo}>NC News</h1>
       </Link>
       <nav>
-        {user && <p>logged in as {user}</p>}
-        {!user && (
+        {!user ||
+          (user === "lurker" && (
+            <Link to="/auth" className={classes.link}>
+              <p className={classes.login}>Login</p>
+            </Link>
+          ))}
+        {user && user !== "lurker" && (
           <Link to="/auth" className={classes.link}>
-            <p className={classes.login}>Login</p>
+            {" "}
+            <p>logged in as {user}</p>
           </Link>
         )}
       </nav>

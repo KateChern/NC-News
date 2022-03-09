@@ -29,3 +29,9 @@ export const fetchCommentsById = (article_id) => {
     return res.data.comments;
   });
 };
+
+export const fetchUsers = () => {
+  return itemsApi.get(`/users`).then((res) => {
+    return res.data.users;
+  });
+};
