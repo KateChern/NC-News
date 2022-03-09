@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import * as api from "../../../apis/articleApi";
+import * as api from "../../../apis/apis";
 import Moment from "react-moment";
 import { FaRegComments } from "react-icons/fa";
 import { RiHeart3Line } from "react-icons/ri";
 import classes from "./ArticleCard.module.css";
+import CommentsList from "../../comments/CommentsList";
 
 const defaultArticle = {
   article_id: 1,
@@ -61,6 +62,7 @@ const ArticleCard = () => {
         </dt>
         <Moment format="YYYY/MM/DD">{article.created_at}</Moment>
       </dl>
+      <CommentsList articleId={article_id} />
     </article>
   );
 };

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import * as api from "../../apis/articleApi";
+import * as api from "../../apis/apis";
 import classes from "./FilterBar.module.css";
 
 const FilterBar = ({ onChangeTopic, onChangeOrder, onChangeSortValue }) => {
