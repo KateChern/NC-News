@@ -7,7 +7,7 @@ import { GoComment } from "react-icons/go";
 import classes from "./ArticleCard.module.css";
 import CommentsList from "../../comments/CommentsList";
 import Modal from "../../modal/Modal";
-import NewCommentForm from "../../comments/NewCommentPost";
+import NewCommentForm from "../../comments/NewCommentForm";
 
 const defaultArticle = {
   article_id: 1,

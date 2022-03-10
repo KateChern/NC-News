@@ -60,7 +60,6 @@ const NewCommentForm = ({
     onAddNewComment();
     setCommentText("");
     setIsTouched(false);
-    console.log(error);
     timer();
   };
 
