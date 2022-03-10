@@ -10,16 +10,10 @@ import FilteredArticlesList from "./components/articles/filtered-articles/Filter
 import AuthForm from "./components/auth/AuthForm";
 
 function App() {
-  const [topic, setTopic] = useState({
-    slug: "football",
-    description: "Footie!",
-  });
   const [order, setOrder] = useState("asc");
   const [sortValue, setSortValue] = useState("title");
   const [user, setUser] = useState("lurker");
-  const onChangeTopic = (newTopicValue) => {
-    setTopic(newTopicValue);
-  };
+
   const onChangeOrder = (newOrder) => {
     setOrder(newOrder);
   };
@@ -32,17 +26,21 @@ function App() {
   return (
     <Router>
       <NavigationBar user={user} />
-      <FilterBar
-        topic={topic}
-        order={order}
-        sortValue={sortValue}
-        onChangeTopic={onChangeTopic}
-        onChangeOrder={onChangeOrder}
-        onChangeSortValue={onChangeSortValue}
-      />
+      <FilterBar />
       <div className="App">
         <Routes>
-          <Route path="/" exact element={<ArticleList />} />
+          <Route
+            path="/"
+            exact
+            element={
+              <ArticleList
+                order={order}
+                sortValue={sortValue}
+                onChangeOrder={onChangeOrder}
+                onChangeSortValue={onChangeSortValue}
+              />
+            }
+          />
           <Route
             path="/auth"
             exact
@@ -51,7 +49,14 @@ function App() {
           <Route
             path="/topics/:topic/articles"
             exact
-            element={<FilteredArticlesList />}
+            element={
+              <FilteredArticlesList
+                order={order}
+                sortValue={sortValue}
+                onChangeOrder={onChangeOrder}
+                onChangeSortValue={onChangeSortValue}
+              />
+            }
           />
           <Route
             path="/articles/:article_id"
