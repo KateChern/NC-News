@@ -11,7 +11,7 @@ const CommentsList = ({ commentsCount, articleId }) => {
   const [comments, setComments] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  // const [btnIsHighlighted, setBtnIsHighlighted] = useState(false);
   const getComments = () => {
     setIsLoading(true);
     api
@@ -29,7 +29,7 @@ const CommentsList = ({ commentsCount, articleId }) => {
 
   useEffect(() => {
     getComments();
-  }, [articleId]);
+  }, [articleId, comments.length]);
 
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p>{error}</p>;
