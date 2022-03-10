@@ -3,9 +3,11 @@ import { useParams, Link } from "react-router-dom";
 import * as api from "../../../apis/apis";
 import Moment from "react-moment";
 import { RiHeart3Line } from "react-icons/ri";
+import { GoComment } from "react-icons/go";
 import classes from "./ArticleCard.module.css";
 import CommentsList from "../../comments/CommentsList";
 import Modal from "../../modal/Modal";
+import NewCommentForm from "../../comments/NewCommentForm";
 
 const defaultArticle = {
   article_id: 1,
@@ -28,6 +30,8 @@ const ArticleCard = ({ user }) => {
   const [isLiked, setIsLiked] = useState(false);
   const [showMessage, setShowMessage] = useState(false);
   const [btnIsHighlighted, setBtnIsHighlighted] = useState(false);
+  const [commentsBtnHighlighted, setCommentsBtnHighlighted] = useState(false);
+  const [showCommentForm, setShowCommentForm] = useState(false);
 
   const getArticleByIdHandler = () => {
     setIsLoading(true);
@@ -47,10 +51,13 @@ const ArticleCard = ({ user }) => {
   useEffect(() => {
     getArticleByIdHandler();
     setVotesCount(article.votes);
-  }, [article_id, article.votes]);
+  }, [article_id, article.votes, article]);
 
   const toggleMessage = () => {
     setShowMessage((prevValue) => !prevValue);
+  };
+  const toggleShowCommentForm = () => {
+    setShowCommentForm((show) => !show);
   };
 
   //optimistic rendering votes
@@ -78,7 +85,14 @@ const ArticleCard = ({ user }) => {
     // and to send the modal message and redirect to login page
     !user || (user === "lurker" && toggleMessage());
   };
-
+  // setting classname on click when posted a new comment
+  const onAddNewComment = () => {
+    setCommentsBtnHighlighted(true);
+    setTimeout(() => {
+      setCommentsBtnHighlighted(false);
+    }, 100);
+  };
+  const commentBtnClasses = ` ${commentsBtnHighlighted ? classes.bump : ""}`;
   const btnClasses = `${btnIsHighlighted ? classes.bump : ""}`;
 
   if (isLoading) return <p>Loading...</p>;
@@ -94,12 +108,24 @@ const ArticleCard = ({ user }) => {
           <dt>By {article.author}</dt>
           <dt className={classes.topic}>{article.topic}</dt>
         </dl>
-        <dl className={classes.flex}>
-          <dt className={btnClasses} onClick={handleVotesIncClick}>
-            <RiHeart3Line /> {votesCount}
-          </dt>
+        <div className={classes.flex}>
+          <dl className={classes.action}>
+            <dt className={btnClasses} onClick={handleVotesIncClick}>
+              <RiHeart3Line /> {votesCount}
+            </dt>
+            <dt className={commentBtnClasses} onClick={toggleShowCommentForm}>
+              <GoComment /> {article.comment_count}
+            </dt>
+          </dl>
           <Moment format="YYYY/MM/DD">{article.created_at}</Moment>
-        </dl>
+        </div>
+        <NewCommentForm
+          toggleMessage={toggleMessage}
+          onAddNewComment={onAddNewComment}
+          articleId={article_id}
+          user={user}
+          showCommentForm={showCommentForm}
+        />
         <CommentsList
           commentsCount={article.comment_count}
           articleId={article_id}
@@ -108,7 +134,7 @@ const ArticleCard = ({ user }) => {
       {showMessage && (
         <Modal onClose={toggleMessage}>
           <p className={classes.msg}>
-            <Link to={"/auth"}>Login to vote </Link>
+            <Link to={"/auth"}>Login</Link>
           </p>
         </Modal>
       )}

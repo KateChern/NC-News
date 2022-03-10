@@ -44,3 +44,12 @@ export const patchVotesOnArticle = (article_id, inc_votes) => {
   //   console.log(error.response.request.response);
   // });
 };
+
+export const postComment = (article_id, comment) => {
+  console.log(article_id, comment);
+  return api
+    .post(`/articles/${article_id}/comments`, { ...comment })
+    .then((res) => {
+      return res.data.comment;
+    });
+};
