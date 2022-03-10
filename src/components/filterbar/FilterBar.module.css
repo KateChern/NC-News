@@ -46,9 +46,9 @@
 
 @media only screen and (min-width: 1440px) {
   .topics-container {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     justify-content: space-around;
-    max-width: 75%;
+    max-width: 60%;
     margin: 0 auto;
   }
 }

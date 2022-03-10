@@ -18,7 +18,7 @@ const NavigationBar = ({ user }) => {
         {user && user !== "lurker" && (
           <Link to="/auth" className={classes.link}>
             {" "}
-            <p>logged in as {user}</p>
+            <p className={classes.login}>Logged in as {user}</p>
           </Link>
         )}
       </nav>

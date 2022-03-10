@@ -34,12 +34,12 @@ a {
 @media only screen and (min-width: 1440px) {
   .login {
     margin-right: 0;
-    font-size: 1.5rem;
+    font-size: 1.7rem;
   }
   .header h1 {
-    margin-left: 15vh;
+    margin-left: 25vh;
   }
   .login {
-    margin-right: 15vh;
+    margin-right: 25vh;
   }
 }

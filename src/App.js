@@ -53,7 +53,11 @@ function App() {
             exact
             element={<FilteredArticlesList />}
           />
-          <Route path="/articles/:article_id" exact element={<ArticleCard />} />
+          <Route
+            path="/articles/:article_id"
+            exact
+            element={<ArticleCard user={user} />}
+          />
         </Routes>
       </div>
     </Router>
