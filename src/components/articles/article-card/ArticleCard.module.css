@@ -101,6 +101,7 @@
 
 .bump {
   animation: bump 300ms ease-out;
+  color: rgb(175, 65, 65);
 }
 
 @keyframes bump {
