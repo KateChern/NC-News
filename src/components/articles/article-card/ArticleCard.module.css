@@ -10,10 +10,17 @@
   justify-content: space-between;
   align-items: center;
   color: #93c1d1;
+  margin-top: 1rem;
+}
+.details {
+  display: block;
+  color: #93c1d1;
+
+  font-size: 1.1rem;
 }
 .text {
   font-family: "Average Sans", Sans-Serif;
-  color: #aaa8a8;
+  color: #c3c2c2;
   font-size: 1.1rem;
   line-height: 1.7rem;
 }
@@ -29,12 +36,20 @@
   text-align: center;
   justify-content: center;
   font-family: "Goudy Bookletter 1911", Serif;
-  margin: 0 -10px 2rem -10px;
+  margin: -10px -15px 2rem -15px;
 }
 .topic {
   color: #9bafb6;
 }
-
+.msg a {
+  font-family: "Average Sans", Sans-Serif;
+  color: #222227;
+  font-size: 1.2rem;
+}
+.msg a :hover {
+  color: var(--bs-blue);
+  transition: color 0.15s ease-in;
+}
 @media only screen and (min-width: 960px) {
   .container {
     max-width: 80%;
@@ -42,27 +57,67 @@
     margin: 8vh auto;
   }
   .text {
+    margin: 4vh auto;
     font-size: 1.4rem;
     line-height: 2rem;
   }
+  .details {
+    font-size: 1.4rem;
+  }
   .header {
     font-size: 1.8rem;
+  }
+  .msg a {
+    font-size: 1.6rem;
   }
 }
 
 @media only screen and (min-width: 1440px) {
   .text {
     font-size: 1.6rem;
-    line-height: 2.5rem;
+    line-height: 2.6rem;
+    margin-top: 5rem;
+    padding: 5px 30px;
+  }
+  .details {
+    font-size: 1.6rem;
+    padding: 15px 30px;
   }
   .flex dt,
   time {
     font-size: 1.4rem;
   }
   .flex {
-    margin: 4vh auto 0 auto;
+    margin: 2vh auto 1rem auto;
+    padding: 0px 22px;
   }
   .title {
     font-size: 2rem;
+  }
+  .msg a {
+    font-size: 2rem;
+  }
+}
+
+.bump {
+  animation: bump 300ms ease-out;
+  color: rgb(175, 65, 65);
+}
+
+@keyframes bump {
+  0% {
+    transform: scale(1);
+  }
+  10% {
+    transform: scale(0.9);
+  }
+  30% {
+    transform: scale(1.1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+  100% {
+    transform: scale(1);
   }
 }

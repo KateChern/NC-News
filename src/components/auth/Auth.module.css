@@ -1,0 +1,59 @@
+.user-container {
+  margin: 10vh auto;
+  max-width: 700px;
+  display: block;
+  background-color: #3a3f44;
+  padding: 10px 15px;
+  border-radius: 10px;
+}
+
+.user-container label {
+  background-color: #515960;
+  border-color: #2c3134;
+  color: #7ac6df;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  height: 5rem;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  font-size: 2.5vh;
+  font-family: "Goudy Bookletter 1911", Serif;
+  margin: -10px -15px;
+}
+.user-container select {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  margin: 5vh auto;
+  width: 15vh;
+  height: 3vh;
+  font-size: 1rem;
+  color: #3a3f44;
+}
+.user-container option {
+  font-size: 1rem;
+  color: #454a50;
+}
+@media only screen and (min-width: 960px) {
+  .user-container select {
+    font-size: 1.2rem;
+  }
+  .user-container option {
+    font-size: 1.2rem;
+  }
+}
+@media only screen and (min-width: 1440px) {
+  .user-container select {
+    font-size: 1.4rem;
+  }
+  .user-container option {
+    font-size: 1.4rem;
+  }
+  .user-container label {
+    height: 7rem;
+    font-size: 2vh;
+  }
+}
