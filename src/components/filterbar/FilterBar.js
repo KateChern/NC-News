@@ -3,29 +3,11 @@ import { Link } from "react-router-dom";
 import * as api from "../../apis/apis";
 import classes from "./FilterBar.module.css";
 
-const FilterBar = ({ onChangeTopic, onChangeOrder, onChangeSortValue }) => {
-  const orderOptions = ["asc", "desc"];
+const FilterBar = () => {
   const [allTopics, setAllTopics] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
-  const sortValues = [
-    "created_at",
-    "title",
-    "topic",
-    "author",
-    "votes",
-    "article_id",
-  ];
 
-  const changeTopicHandler = (e) => {
-    onChangeTopic(e.target.value);
-  };
-  const changeSortValueHandler = (e) => {
-    onChangeSortValue(e.target.value);
-  };
-  const changeOrderHandler = (e) => {
-    onChangeOrder(e.target.value);
-  };
   const getAllTopics = () => {
     api
       .fetchTopics()

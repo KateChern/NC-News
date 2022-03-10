@@ -5,13 +5,12 @@ import CollapseWrapper from "../collapse-wrapper/CollapseWrapper";
 import Moment from "react-moment";
 import classes from "./Comments.module.css";
 import { RiHeart3Line } from "react-icons/ri";
-import { FaRegComments } from "react-icons/fa";
 
-const CommentsList = ({ commentsCount, articleId }) => {
+const CommentsList = ({ commentsCount, articleId, count }) => {
   const [comments, setComments] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
-  // const [btnIsHighlighted, setBtnIsHighlighted] = useState(false);
+
   const getComments = () => {
     setIsLoading(true);
     api
@@ -29,8 +28,13 @@ const CommentsList = ({ commentsCount, articleId }) => {
 
   useEffect(() => {
     getComments();
-  }, [articleId, comments.length]);
+  }, [articleId, count]);
 
+  if (comments.length > 0) {
+    comments.sort((a, b) =>
+      a.comment_id < b.comment_id ? 1 : a.comment_id > b.comment_id ? -1 : 0
+    );
+  }
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p>{error}</p>;
   return (

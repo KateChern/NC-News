@@ -30,8 +30,8 @@ const ArticleCard = ({ user }) => {
   const [isLiked, setIsLiked] = useState(false);
   const [showMessage, setShowMessage] = useState(false);
   const [btnIsHighlighted, setBtnIsHighlighted] = useState(false);
-  const [commentsBtnHighlighted, setCommentsBtnHighlighted] = useState(false);
   const [showCommentForm, setShowCommentForm] = useState(false);
+  const [count, setCount] = useState(0);
 
   const getArticleByIdHandler = () => {
     setIsLoading(true);
@@ -51,7 +51,7 @@ const ArticleCard = ({ user }) => {
   useEffect(() => {
     getArticleByIdHandler();
     setVotesCount(article.votes);
-  }, [article_id, article.votes, article]);
+  }, [article_id, count]);
 
   const toggleMessage = () => {
     setShowMessage((prevValue) => !prevValue);
@@ -79,20 +79,13 @@ const ArticleCard = ({ user }) => {
 
     setTimeout(() => {
       setBtnIsHighlighted(false);
-    }, 100);
+    }, 1000);
 
     //checking if user has logged in in order to be able to vote
     // and to send the modal message and redirect to login page
     !user || (user === "lurker" && toggleMessage());
   };
-  // setting classname on click when posted a new comment
-  const onAddNewComment = () => {
-    setCommentsBtnHighlighted(true);
-    setTimeout(() => {
-      setCommentsBtnHighlighted(false);
-    }, 100);
-  };
-  const commentBtnClasses = ` ${commentsBtnHighlighted ? classes.bump : ""}`;
+
   const btnClasses = `${btnIsHighlighted ? classes.bump : ""}`;
 
   if (isLoading) return <p>Loading...</p>;
@@ -113,15 +106,15 @@ const ArticleCard = ({ user }) => {
             <dt className={btnClasses} onClick={handleVotesIncClick}>
               <RiHeart3Line /> {votesCount}
             </dt>
-            <dt className={commentBtnClasses} onClick={toggleShowCommentForm}>
+            <dt onClick={toggleShowCommentForm}>
               <GoComment /> {article.comment_count}
             </dt>
           </dl>
           <Moment format="YYYY/MM/DD">{article.created_at}</Moment>
         </div>
         <NewCommentForm
+          setCount={setCount}
           toggleMessage={toggleMessage}
-          onAddNewComment={onAddNewComment}
           articleId={article_id}
           user={user}
           showCommentForm={showCommentForm}
@@ -129,6 +122,7 @@ const ArticleCard = ({ user }) => {
         <CommentsList
           commentsCount={article.comment_count}
           articleId={article_id}
+          count={count}
         />
       </article>
       {showMessage && (

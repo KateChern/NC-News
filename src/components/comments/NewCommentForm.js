@@ -6,9 +6,9 @@ import classes from "./NewCommentForm.module.css";
 const NewCommentForm = ({
   articleId,
   user,
-  onAddNewComment,
   showCommentForm,
   toggleMessage,
+  setCount,
 }) => {
   const [commentText, setCommentText] = useState("");
   const [isTouched, setIsTouched] = useState(false);
@@ -36,6 +36,7 @@ const NewCommentForm = ({
     api
       .postComment(articleId, newComment)
       .then((commentData) => {
+        setCount((prevValue) => prevValue + 1);
         setIsLoading(false);
         setError(null);
         setSent(true);
@@ -57,7 +58,6 @@ const NewCommentForm = ({
 
     if (!isValid) return;
     onPostCommentHandler();
-    onAddNewComment();
     setCommentText("");
     setIsTouched(false);
     timer();
