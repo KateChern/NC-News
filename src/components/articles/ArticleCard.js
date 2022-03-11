@@ -26,23 +26,22 @@ const ArticleCard = ({ user, toggleMessage, count }) => {
   const [isLiked, setIsLiked] = useState(false);
   const [btnIsHighlighted, setBtnIsHighlighted] = useState(false);
 
-  const getArticleByIdHandler = () => {
-    setIsLoading(true);
-    api
-      .fetchArticleById(article_id)
-      .then((articleData) => {
-        setArticle(articleData);
-        setError(null);
-        setVotesCount(articleData.votes);
-      })
-      .catch((e) => {
-        setError(e);
-        setIsLoading(false);
-      });
-    setIsLoading(false);
-  };
-
   useEffect(() => {
+    const getArticleByIdHandler = () => {
+      setIsLoading(true);
+      api
+        .fetchArticleById(article_id)
+        .then((articleData) => {
+          setArticle(articleData);
+          setError(null);
+          setVotesCount(articleData.votes);
+        })
+        .catch((e) => {
+          setError(e);
+          setIsLoading(false);
+        });
+      setIsLoading(false);
+    };
     getArticleByIdHandler();
   }, [article_id]);
 

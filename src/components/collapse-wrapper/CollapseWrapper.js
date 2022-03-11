@@ -11,9 +11,9 @@ const CollapseWrapper = ({ children }) => {
       {isVisible && children}
       {children.length > 0 && children[0]}
       {children.length > 0 && (
-        <a role="button" className={classes.collapseBtn} onClick={handleClick}>
+        <p role="button" className={classes.collapseBtn} onClick={handleClick}>
           {isVisible ? "Hide comments" : "Show more comments"}
-        </a>
+        </p>
       )}
     </>
   );
