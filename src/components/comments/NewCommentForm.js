@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import * as api from "../../apis/apis";
-import { BiSend } from "react-icons/bi";
 import classes from "./NewCommentForm.module.css";
 import sendCommentIcon from "../../icons/sendIcon.svg";
 
@@ -10,13 +9,12 @@ const NewCommentForm = ({
   toggleMessage,
   setCount,
   setSent,
-  sent,
 }) => {
   const [commentText, setCommentText] = useState("");
   const [isTouched, setIsTouched] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-  const isValid = commentText.trim() != "";
+  const isValid = commentText.trim() !== "";
 
   const onCommentChange = (e) => {
     setCommentText(e.target.value);
