@@ -54,3 +54,9 @@ export const deleteComment = (comment_id) => {
   console.log("deleted");
   return api.delete(`/comments/${comment_id}`);
 };
+
+export const patchVotesOnComment = (comment_id, inc_votes) => {
+  return api.patch(`/comments/${comment_id}`, { inc_votes }).then((res) => {
+    return res.data.comment;
+  });
+};

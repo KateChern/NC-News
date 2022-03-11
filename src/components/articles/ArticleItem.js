@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import classes from "../articles-list/ArticlesList.module.css";
+import classes from "./ArticlesList.module.css";
 import { FaRegComments } from "react-icons/fa";
 import { RiHeart3Line } from "react-icons/ri";
 import Moment from "react-moment";

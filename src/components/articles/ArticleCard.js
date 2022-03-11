@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import * as api from "../../../apis/apis";
+import * as api from "../../apis/apis";
 import Moment from "react-moment";
 import { RiHeart3Line } from "react-icons/ri";
 import classes from "./ArticleCard.module.css";
@@ -33,6 +33,7 @@ const ArticleCard = ({ user, toggleMessage, count }) => {
       .then((articleData) => {
         setArticle(articleData);
         setError(null);
+        setVotesCount(articleData.votes);
       })
       .catch((e) => {
         setError(e);
@@ -43,24 +44,20 @@ const ArticleCard = ({ user, toggleMessage, count }) => {
 
   useEffect(() => {
     getArticleByIdHandler();
-    setVotesCount(article.votes);
   }, [article_id]);
 
-  //optimistic rendering votes
   const handleVotesIncClick = () => {
-    //setting the value to update votes depending on user status
     let incValue = !user || user === "lurker" ? 0 : user && isLiked ? -1 : 1;
     setVotesCount((currCount) => currCount + incValue);
     setVotesError(null);
 
-    // updating votes in the db
     api.patchVotesOnArticle(article_id, incValue).catch((error) => {
       setVotesCount((currCount) => currCount - 1);
+      console.log("roor");
       setVotesError("Something went wrong, please try again.");
     });
 
     setIsLiked((prevValue) => !prevValue);
-    //setting BtnIsHighlighted to true to upodate the class name and add animation to the ckick action
     setBtnIsHighlighted(true);
 
     setTimeout(() => {

@@ -1,9 +1,9 @@
 import ArticleCard from "./ArticleCard";
-import CommentsList from "../../comments/CommentsList";
-import NewCommentForm from "../../comments/NewCommentForm";
+import CommentsList from "../comments/CommentsList";
+import NewCommentForm from "../comments/NewCommentForm";
 import { useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import Modal from "../../modal/Modal";
+import Modal from "../modal/Modal";
 import classes from "./ArticleCard.module.css";
 
 const ArticlePage = ({ user }) => {
@@ -28,11 +28,11 @@ const ArticlePage = ({ user }) => {
           user={user}
         />
         <CommentsList
+          toggleMessage={toggleMessage}
           setCount={setCount}
           user={user}
           sent={sent}
           articleId={article_id}
-          count={count}
         />
       </article>
       {showMessage && (
