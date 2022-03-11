@@ -1,3 +1,27 @@
-.hiden {
-  display: none;
+.formContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 2vh -15px 0rem -15px;
+  align-items: center;
+  background-color: #515960;
+  border-color: #2c3134;
+  padding: 2vh 2vh 2vh 2vh;
+  border-radius: 6px;
+  /* position: fixed; */
+}
+.form {
+  margin: 0 auto;
+}
+
+.form input {
+  border-radius: 6px;
+  border: #515960;
+  margin: 0 10px;
+  padding: 3px 6px;
+}
+.form label {
+  display: flex;
+  justify-content: center;
+  padding: 5px 0 20px 0;
 }

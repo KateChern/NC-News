@@ -2,19 +2,20 @@ import { useEffect, useState } from "react";
 import * as api from "../../apis/apis";
 import { BiSend } from "react-icons/bi";
 import classes from "./NewCommentForm.module.css";
+import sendCommentIcon from "../../icons/sendIcon.svg";
 
 const NewCommentForm = ({
   articleId,
   user,
-  showCommentForm,
   toggleMessage,
   setCount,
+  setSent,
+  sent,
 }) => {
   const [commentText, setCommentText] = useState("");
   const [isTouched, setIsTouched] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [sent, setSent] = useState(false);
   const isValid = commentText.trim() != "";
 
   const onCommentChange = (e) => {
@@ -33,6 +34,7 @@ const NewCommentForm = ({
 
   const onPostCommentHandler = () => {
     setIsLoading(true);
+    setSent(false);
     api
       .postComment(articleId, newComment)
       .then((commentData) => {
@@ -42,39 +44,44 @@ const NewCommentForm = ({
         setSent(true);
       })
       .catch((err) => {
-        setError("Your comment hasn't been sent, Login and try again");
+        setError("Your comment hasn't been sent, login and try again");
         setIsLoading(false);
         setSent(false);
-        console.log(error);
       });
   };
-  const timer = () => {
-    setTimeout(() => {
-      setSent(false);
-    }, 2000);
-  };
+
   const submitHandler = (e) => {
     e.preventDefault();
 
     if (!isValid) return;
+
     onPostCommentHandler();
     setCommentText("");
     setIsTouched(false);
-    timer();
   };
 
-  const formClasses = ` ${showCommentForm ? classes.form : classes.hiden}`;
-
   return (
-    <form className={formClasses} onSubmit={submitHandler}>
-      <input required value={commentText} onChange={onCommentChange} />
-      <button>
-        <BiSend />
-      </button>
-      {isLoading && <p>Loading...</p>}
-      {sent && <p>Comment sent</p>}
-      {error && <p>{error}</p>}
-    </form>
+    <div className={classes.formContainer}>
+      <form className={classes.form}>
+        {isLoading && <p>Loading...</p>}
+        {error && <p>{error}</p>}
+
+        <div>
+          <input
+            placeholder="New Comment"
+            required
+            value={commentText}
+            onChange={onCommentChange}
+          />
+          <img
+            type="button"
+            onClick={submitHandler}
+            src={sendCommentIcon}
+            alt="send comment Icon"
+          />
+        </div>
+      </form>
+    </div>
   );
 };
 

@@ -1,17 +1,12 @@
+import classes from "../comments/Comments.module.css";
+
 const SortButtons = ({
   onChangeOrder,
   onChangeSortValue,
   order,
   sortValue,
 }) => {
-  const sortValues = [
-    "created_at",
-    "title",
-    "topic",
-    "author",
-    "votes",
-    "article_id",
-  ];
+  const sortValues = ["created_at", "title", "author", "votes", "article_id"];
   const orderOptions = ["asc", "desc"];
 
   const changeSortValueHandler = (e) => {
@@ -20,14 +15,23 @@ const SortButtons = ({
   const changeOrderHandler = (e) => {
     onChangeOrder(e.target.value);
   };
+
   return (
     <div>
-      <select value={sortValue} onChange={changeSortValueHandler}>
+      <select
+        className={`${classes.btn} ${classes["btn-light"]}`}
+        value={sortValue}
+        onChange={changeSortValueHandler}
+      >
         {sortValues.map((el, index) => {
           return <option key={index}>{el}</option>;
         })}
       </select>
-      <select value={order} onChange={changeOrderHandler}>
+      <select
+        className={`${classes.btn} ${classes["btn-light"]}`}
+        value={order}
+        onChange={changeOrderHandler}
+      >
         {orderOptions.map((el, index) => {
           return <option key={index}>{el}</option>;
         })}
