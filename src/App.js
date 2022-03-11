@@ -3,12 +3,11 @@ import "bootswatch/dist/slate/bootstrap.min.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import NavigationBar from "./components/navigation/NavigationBar";
-import ArticleList from "./components/articles/articles-list/ArticlesList";
-import ArticleCard from "./components/articles/article-card/ArticleCard";
+import ArticleList from "./components/articles/ArticlesList";
 import FilterBar from "./components/filterbar/FilterBar";
-import FilteredArticlesList from "./components/articles/filtered-articles/FilteredArticles";
+import FilteredArticlesList from "./components/articles/FilteredArticles";
 import AuthForm from "./components/auth/AuthForm";
-import ArticlePage from "./components/articles/article-card/ArticlePage";
+import ArticlePage from "./components/articles/ArticlePage";
 
 function App() {
   const [order, setOrder] = useState("asc");

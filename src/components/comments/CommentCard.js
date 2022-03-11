@@ -2,12 +2,14 @@ import Moment from "react-moment";
 import classes from "./Comments.module.css";
 import { RiHeart3Line } from "react-icons/ri";
 import * as api from "../../apis/apis";
-import { useState } from "react";
-import deleteIcon from "../../icons/deleteIcon.svg";
+import { useEffect, useState } from "react";
 
-const CommentCard = ({ comment, user, setCount, onDelete }) => {
+const CommentCard = ({ comment, user, setCount, onDelete, toggleMessage }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [votesCount, setVotesCount] = useState(0);
+  const [isLiked, setIsLiked] = useState(false);
+  const [btnIsHighlighted, setBtnIsHighlighted] = useState(false);
 
   const deleteComment = (comment) => {
     setIsLoading(true);
@@ -25,17 +27,41 @@ const CommentCard = ({ comment, user, setCount, onDelete }) => {
         setIsLoading(false);
       });
   };
+  useEffect(() => {
+    setVotesCount(comment.votes);
+  }, []);
 
+  const handleVotesIncClick = () => {
+    let incValue = !user || user === "lurker" ? 0 : user && isLiked ? -1 : 1;
+    setVotesCount((currCount) => currCount + incValue);
+
+    api.patchVotesOnComment(comment.comment_id, incValue).catch((error) => {
+      setVotesCount((currCount) => currCount - 1);
+    });
+
+    setIsLiked((prevValue) => !prevValue);
+    setBtnIsHighlighted(true);
+
+    setTimeout(() => {
+      setBtnIsHighlighted(false);
+    }, 1000);
+
+    !user || (user === "lurker" && toggleMessage());
+  };
+  const btnClasses = `${btnIsHighlighted ? classes.bump : ""}`;
   return (
-    <section>
+    <section className={classes.container}>
       <p className={classes.author}>{comment.author}</p>
       <div className={classes["comment-body"]}>
         <p className={classes.text}>{comment.body}</p>
         <dl className={classes.flex}>
-          <dt>
-            <RiHeart3Line /> {comment.votes}
+          <dt className={classes.details}>
+            <div className={btnClasses} onClick={handleVotesIncClick}>
+              <RiHeart3Line /> {votesCount}{" "}
+            </div>
+
+            <Moment format="YYYY/MM/DD">{comment.created_at}</Moment>
           </dt>
-          <Moment format="YYYY/MM/DD">{comment.created_at}</Moment>
           <dt>
             <button
               className={
@@ -47,10 +73,10 @@ const CommentCard = ({ comment, user, setCount, onDelete }) => {
             >
               delete
             </button>
-            {isLoading && <p>Loading</p>}
-            {error && <p>{error}</p>}
           </dt>
         </dl>
+        {isLoading && <p>Loading</p>}
+        {error && <p>{error}</p>}
       </div>
       <div className={classes.border}></div>
     </section>

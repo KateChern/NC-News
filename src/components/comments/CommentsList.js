@@ -5,7 +5,7 @@ import CollapseWrapper from "../collapse-wrapper/CollapseWrapper";
 import classes from "./Comments.module.css";
 import CommentCard from "./CommentCard";
 
-const CommentsList = ({ sent, articleId, count, user, setCount }) => {
+const CommentsList = ({ sent, articleId, user, setCount, toggleMessage }) => {
   const [comments, setComments] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -27,7 +27,6 @@ const CommentsList = ({ sent, articleId, count, user, setCount }) => {
 
   useEffect(() => {
     getComments();
-    console.log("sjfhgv");
   }, [articleId, sent]);
 
   const filterComments = (commentId) => {
@@ -44,14 +43,15 @@ const CommentsList = ({ sent, articleId, count, user, setCount }) => {
   }
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p>{error}</p>;
-  // const newCount = +commentsCount + count;
+
   return (
     <article className={classes["comment-section"]}>
-      {/* <p className={classes.count}>{newCount} COMMENTS</p> */}
       <CollapseWrapper>
         {comments.map((comment) => {
           return (
             <CommentCard
+              toggleMessage={toggleMessage}
+              // setVotesCount={setVotesCount}
               comments={comments}
               onDelete={filterComments}
               key={comment.comment_id}

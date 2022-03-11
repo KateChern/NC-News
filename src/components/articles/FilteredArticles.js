@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
 import classes from "./ArticlesList.module.css";
-import ArticleItem from "../article-item/ArticleItem";
+import ArticleItem from "./ArticleItem";
 import { useState } from "react";
-import * as api from "../../../apis/apis";
-import SortButtons from "../../sort-buttons/SortButtons";
+import * as api from "../../apis/apis";
+import { useParams } from "react-router-dom";
+import SortButtons from "../sort-buttons/SortButtons";
 
-const ArticleList = ({
+const FilteredArticlesList = ({
   order,
   sortValue,
   onChangeOrder,
@@ -14,11 +15,12 @@ const ArticleList = ({
   const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const { topic } = useParams();
 
   const getArticles = () => {
     setIsLoading(true);
     api
-      .fetchArticles("", sortValue, order)
+      .fetchArticles(topic, sortValue, order)
       .then((articlesData) => {
         setArticles(articlesData);
         setIsLoading(false);
@@ -29,16 +31,16 @@ const ArticleList = ({
         setIsLoading(false);
       });
   };
-
   useEffect(() => {
     getArticles();
-  }, [order, sortValue]);
+  }, [topic, order, sortValue]);
 
   if (isLoading) return <p>Loading...</p>;
-  if (error) return <p>{error}</p>;
+  if (error) return <p>{error} </p>;
+
   return (
     <>
-      <h4 className={classes.header}>All articles</h4>
+      <h4 className={classes.header}>Articles related to {topic} </h4>
       <SortButtons
         order={order}
         sortValue={sortValue}
@@ -54,4 +56,4 @@ const ArticleList = ({
   );
 };
 
-export default ArticleList;
+export default FilteredArticlesList;

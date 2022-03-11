@@ -19,10 +19,16 @@
 .flex {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   color: #93c1d1;
   font-size: 0.8rem;
+}
+.details {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 40%;
 }
 .text {
   font-family: "Average Sans", Sans-Serif;
@@ -129,4 +135,35 @@
   /* color: var(--bs-blue); */
   text-decoration: underline;
   transition: text-decoration 0.15s ease-in;
+}
+.collapseBtn :active {
+  color: #93c1d1;
+  transition: color 0.15s ease-in;
+}
+.collapseBtn :focus {
+  color: #93c1d1;
+  transition: color 0.15s ease-in;
+}
+
+.bump {
+  animation: bump 300ms ease-out;
+  color: rgb(175, 65, 65);
+}
+
+@keyframes bump {
+  0% {
+    transform: scale(1);
+  }
+  10% {
+    transform: scale(0.9);
+  }
+  30% {
+    transform: scale(1.1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
