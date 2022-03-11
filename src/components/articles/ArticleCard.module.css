@@ -65,7 +65,9 @@
   width: 40%;
   margin: auto 0;
 }
-
+.count {
+  color: rgb(207, 210, 212);
+}
 @media only screen and (min-width: 960px) {
   .container {
     max-width: 80%;
@@ -89,19 +91,24 @@
 }
 
 @media only screen and (min-width: 1440px) {
+  .container {
+    max-width: 80%;
+    padding: 10px 60px;
+    /* margin: 8vh auto; */
+  }
   .text {
-    font-size: 1.6rem;
-    line-height: 2.6rem;
+    font-size: 1.3rem;
+    line-height: 2.5rem;
     margin-top: 5rem;
     padding: 5px 30px;
   }
   .details {
-    font-size: 1.6rem;
+    font-size: 1.2rem;
     padding: 15px 30px;
   }
   .flex dt,
   time {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
   }
   .flex {
     margin: 2vh auto 1rem auto;
@@ -109,10 +116,16 @@
   }
 
   .title {
-    font-size: 2rem;
+    font-size: 1.5rem;
+    height: 6.5rem;
+    margin: -10px -60px;
   }
   .msg a {
     font-size: 2rem;
+  }
+  .count {
+    margin: 10px 30px;
+    font-size: 1.1rem;
   }
 }
 

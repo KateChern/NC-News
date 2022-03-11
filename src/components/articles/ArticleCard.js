@@ -68,13 +68,14 @@ const ArticleCard = ({ user, toggleMessage, count }) => {
 
   const btnClasses = `${btnIsHighlighted ? classes.bump : ""}`;
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <p className={classes.msg}>Loading...</p>;
+  if (error) return <p className={classes.msg}>Article not found</p>;
   if (error) return <p>Article not found</p>;
   if (votesError) return <p>{votesError}</p>;
 
   const newCount = +article.comment_count + count;
   return (
-    <>
+    <div>
       <h3 className={classes.title}>{article.title}</h3>
       <p className={classes.text}>{article.body}</p>
       <dl className={classes.details}>
@@ -90,7 +91,7 @@ const ArticleCard = ({ user, toggleMessage, count }) => {
         <Moment format="YYYY/MM/DD">{article.created_at}</Moment>
       </div>
       <p className={classes.count}>{newCount} COMMENTS</p>
-    </>
+    </div>
   );
 };
 export default ArticleCard;
