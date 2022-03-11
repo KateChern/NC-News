@@ -1,9 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import classes from "./ArticlesList.module.css";
 import ArticleItem from "./ArticleItem";
-import { useState } from "react";
-import * as api from "../../apis/apis";
 import SortButtons from "../sort-buttons/SortButtons";
+import useArticles from "../../hooks/hooks";
 
 const ArticleList = ({
   order,
@@ -11,28 +10,7 @@ const ArticleList = ({
   onChangeOrder,
   onChangeSortValue,
 }) => {
-  const [articles, setArticles] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  const getArticles = () => {
-    setIsLoading(true);
-    api
-      .fetchArticles("", sortValue, order)
-      .then((articlesData) => {
-        setArticles(articlesData);
-        setIsLoading(false);
-        setError(null);
-      })
-      .catch((error) => {
-        setError(error.response.data.msg);
-        setIsLoading(false);
-      });
-  };
-
-  useEffect(() => {
-    getArticles();
-  }, [order, sortValue]);
+  const { articles, isLoading, error } = useArticles("", sortValue, order);
 
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p>{error}</p>;

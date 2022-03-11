@@ -1,10 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import classes from "./ArticlesList.module.css";
 import ArticleItem from "./ArticleItem";
-import { useState } from "react";
-import * as api from "../../apis/apis";
 import { useParams } from "react-router-dom";
 import SortButtons from "../sort-buttons/SortButtons";
+import useArticles from "../../hooks/hooks";
 
 const FilteredArticlesList = ({
   order,
@@ -12,28 +11,9 @@ const FilteredArticlesList = ({
   onChangeOrder,
   onChangeSortValue,
 }) => {
-  const [articles, setArticles] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
   const { topic } = useParams();
 
-  const getArticles = () => {
-    setIsLoading(true);
-    api
-      .fetchArticles(topic, sortValue, order)
-      .then((articlesData) => {
-        setArticles(articlesData);
-        setIsLoading(false);
-        setError(null);
-      })
-      .catch((error) => {
-        setError(error.response.data.msg);
-        setIsLoading(false);
-      });
-  };
-  useEffect(() => {
-    getArticles();
-  }, [topic, order, sortValue]);
+  const { articles, isLoading, error } = useArticles(topic, sortValue, order);
 
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p>{error} </p>;

@@ -51,8 +51,6 @@ const CommentsList = ({ sent, articleId, user, setCount, toggleMessage }) => {
           return (
             <CommentCard
               toggleMessage={toggleMessage}
-              // setVotesCount={setVotesCount}
-              comments={comments}
               onDelete={filterComments}
               key={comment.comment_id}
               comment={comment}

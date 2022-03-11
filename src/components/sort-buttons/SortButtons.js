@@ -6,7 +6,7 @@ const SortButtons = ({
   order,
   sortValue,
 }) => {
-  const sortValues = ["created_at", "title", "author", "votes", "article_id"];
+  const sortValues = ["created_at", "title", "author", "votes"];
   const orderOptions = ["asc", "desc"];
 
   const changeSortValueHandler = (e) => {
