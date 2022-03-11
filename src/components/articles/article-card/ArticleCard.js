@@ -1,13 +1,9 @@
 import { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import * as api from "../../../apis/apis";
 import Moment from "react-moment";
 import { RiHeart3Line } from "react-icons/ri";
-import { GoComment } from "react-icons/go";
 import classes from "./ArticleCard.module.css";
-import CommentsList from "../../comments/CommentsList";
-import Modal from "../../modal/Modal";
-import NewCommentForm from "../../comments/NewCommentForm";
 
 const defaultArticle = {
   article_id: 1,
@@ -20,7 +16,7 @@ const defaultArticle = {
   comment_count: "0",
 };
 
-const ArticleCard = ({ user }) => {
+const ArticleCard = ({ user, toggleMessage, count }) => {
   const { article_id } = useParams();
   const [article, setArticle] = useState(defaultArticle);
   const [isLoading, setIsLoading] = useState(true);
@@ -28,10 +24,7 @@ const ArticleCard = ({ user }) => {
   const [votesError, setVotesError] = useState(null);
   const [votesCount, setVotesCount] = useState(0);
   const [isLiked, setIsLiked] = useState(false);
-  const [showMessage, setShowMessage] = useState(false);
   const [btnIsHighlighted, setBtnIsHighlighted] = useState(false);
-  const [showCommentForm, setShowCommentForm] = useState(false);
-  const [count, setCount] = useState(0);
 
   const getArticleByIdHandler = () => {
     setIsLoading(true);
@@ -51,14 +44,7 @@ const ArticleCard = ({ user }) => {
   useEffect(() => {
     getArticleByIdHandler();
     setVotesCount(article.votes);
-  }, [article_id, count]);
-
-  const toggleMessage = () => {
-    setShowMessage((prevValue) => !prevValue);
-  };
-  const toggleShowCommentForm = () => {
-    setShowCommentForm((show) => !show);
-  };
+  }, [article_id]);
 
   //optimistic rendering votes
   const handleVotesIncClick = () => {
@@ -81,8 +67,6 @@ const ArticleCard = ({ user }) => {
       setBtnIsHighlighted(false);
     }, 1000);
 
-    //checking if user has logged in in order to be able to vote
-    // and to send the modal message and redirect to login page
     !user || (user === "lurker" && toggleMessage());
   };
 
@@ -92,46 +76,24 @@ const ArticleCard = ({ user }) => {
   if (error) return <p>Article not found</p>;
   if (votesError) return <p>{votesError}</p>;
 
+  const newCount = +article.comment_count + count;
   return (
     <>
-      <article className={classes.container}>
-        <h3 className={classes.title}>{article.title}</h3>
-        <p className={classes.text}>{article.body}</p>
-        <dl className={classes.details}>
-          <dt>By {article.author}</dt>
-          <dt className={classes.topic}>{article.topic}</dt>
+      <h3 className={classes.title}>{article.title}</h3>
+      <p className={classes.text}>{article.body}</p>
+      <dl className={classes.details}>
+        <dt>By {article.author}</dt>
+        <dt className={classes.topic}>{article.topic}</dt>
+      </dl>
+      <div className={classes.flex}>
+        <dl className={classes.action}>
+          <dt className={btnClasses} onClick={handleVotesIncClick}>
+            <RiHeart3Line /> {votesCount}
+          </dt>
         </dl>
-        <div className={classes.flex}>
-          <dl className={classes.action}>
-            <dt className={btnClasses} onClick={handleVotesIncClick}>
-              <RiHeart3Line /> {votesCount}
-            </dt>
-            <dt onClick={toggleShowCommentForm}>
-              <GoComment /> {article.comment_count}
-            </dt>
-          </dl>
-          <Moment format="YYYY/MM/DD">{article.created_at}</Moment>
-        </div>
-        <NewCommentForm
-          setCount={setCount}
-          toggleMessage={toggleMessage}
-          articleId={article_id}
-          user={user}
-          showCommentForm={showCommentForm}
-        />
-        <CommentsList
-          commentsCount={article.comment_count}
-          articleId={article_id}
-          count={count}
-        />
-      </article>
-      {showMessage && (
-        <Modal onClose={toggleMessage}>
-          <p className={classes.msg}>
-            <Link to={"/auth"}>Login</Link>
-          </p>
-        </Modal>
-      )}
+        <Moment format="YYYY/MM/DD">{article.created_at}</Moment>
+      </div>
+      <p className={classes.count}>{newCount} COMMENTS</p>
     </>
   );
 };

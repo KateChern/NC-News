@@ -8,6 +8,7 @@ import ArticleCard from "./components/articles/article-card/ArticleCard";
 import FilterBar from "./components/filterbar/FilterBar";
 import FilteredArticlesList from "./components/articles/filtered-articles/FilteredArticles";
 import AuthForm from "./components/auth/AuthForm";
+import ArticlePage from "./components/articles/article-card/ArticlePage";
 
 function App() {
   const [order, setOrder] = useState("asc");
@@ -61,7 +62,7 @@ function App() {
           <Route
             path="/articles/:article_id"
             exact
-            element={<ArticleCard user={user} />}
+            element={<ArticlePage user={user} />}
           />
         </Routes>
       </div>
