@@ -34,10 +34,14 @@
   color: #93c1d1;
   transition: color 0.15s ease-in;
 }
-
+.msg {
+  font-family: "Average Sans", Sans-Serif;
+  color: #878792;
+  font-size: 1.2rem;
+}
 @media only screen and (min-width: 960px) {
   .topics-container {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     justify-content: space-around;
     max-width: 90%;
     margin: 0 auto;
@@ -46,7 +50,7 @@
 
 @media only screen and (min-width: 1440px) {
   .topics-container {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     justify-content: space-around;
     max-width: 60%;
     margin: 0 auto;

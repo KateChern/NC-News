@@ -41,8 +41,8 @@ const CommentsList = ({ sent, articleId, user, setCount, toggleMessage }) => {
       a.comment_id < b.comment_id ? 1 : a.comment_id > b.comment_id ? -1 : 0
     );
   }
-  if (isLoading) return <p>Loading...</p>;
-  if (error) return <p>{error}</p>;
+  if (isLoading) return <p className={classes.msg}>Loading...</p>;
+  if (error) return <p className={classes.msg}>{error}</p>;
 
   return (
     <article className={classes["comment-section"]}>

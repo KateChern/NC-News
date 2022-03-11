@@ -24,8 +24,8 @@ const FilterBar = () => {
   useEffect(() => {
     getAllTopics();
   }, []);
-  if (isLoading) return <p>Loading...</p>;
-  if (error) return <p>{error} </p>;
+  if (isLoading) return <p className={classes.msg}>Loading...</p>;
+  if (error) return <p className={classes.msg}>{error} </p>;
   return (
     <div className={classes["topics-container"]}>
       <Link to={"/"}>

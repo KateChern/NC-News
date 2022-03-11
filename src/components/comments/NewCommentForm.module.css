@@ -8,7 +8,6 @@
   border-color: #2c3134;
   padding: 2vh 2vh 2vh 2vh;
   border-radius: 6px;
-  /* position: fixed; */
 }
 .form {
   margin: 0 auto;
@@ -20,8 +19,20 @@
   margin: 0 10px;
   padding: 3px 6px;
 }
-.form label {
-  display: flex;
-  justify-content: center;
-  padding: 5px 0 20px 0;
+
+@media only screen and (min-width: 960px) {
+}
+
+@media only screen and (min-width: 1440px) {
+  .form input {
+    margin: 0 10px;
+    padding: 4px 50px;
+  }
+  .formContainer img {
+    width: 40px;
+    height: 40px;
+  }
+  .formContainer {
+    margin: 3rem -60px 0rem -60px;
+  }
 }
