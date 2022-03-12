@@ -10,22 +10,21 @@ const CommentsList = ({ sent, articleId, user, setCount, toggleMessage }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const getComments = () => {
-    setIsLoading(true);
-    api
-      .fetchCommentsById(articleId)
-      .then((commentsData) => {
-        setComments(commentsData);
-        setIsLoading(false);
-        setError(null);
-      })
-      .catch((e) => {
-        setError(e.response.data.msg);
-        setIsLoading(false);
-      });
-  };
-
   useEffect(() => {
+    const getComments = () => {
+      setIsLoading(true);
+      api
+        .fetchCommentsById(articleId)
+        .then((commentsData) => {
+          setComments(commentsData);
+          setIsLoading(false);
+          setError(null);
+        })
+        .catch((e) => {
+          setError(e.response.data.msg);
+          setIsLoading(false);
+        });
+    };
     getComments();
   }, [articleId, sent]);
 

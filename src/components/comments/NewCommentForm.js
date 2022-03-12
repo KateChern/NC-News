@@ -23,7 +23,7 @@ const NewCommentForm = ({
 
   useEffect(() => {
     isTouched && (!user || user === "lurker") && toggleMessage();
-  }, [commentText]);
+  }, [commentText]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const newComment = {
     username: user,
