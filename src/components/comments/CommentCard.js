@@ -29,7 +29,7 @@ const CommentCard = ({ comment, user, setCount, onDelete, toggleMessage }) => {
   };
   useEffect(() => {
     setVotesCount(comment.votes);
-  }, []);
+  }, [comment.votes]);
 
   const handleVotesIncClick = () => {
     let incValue = !user || user === "lurker" ? 0 : user && isLiked ? -1 : 1;
