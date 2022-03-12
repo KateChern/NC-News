@@ -29,7 +29,7 @@ const CommentCard = ({ comment, user, setCount, onDelete, toggleMessage }) => {
   };
   useEffect(() => {
     setVotesCount(comment.votes);
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [comment.votes]);
 
   const handleVotesIncClick = () => {
     let incValue = !user || user === "lurker" ? 0 : user && isLiked ? -1 : 1;
