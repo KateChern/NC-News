@@ -110,7 +110,7 @@
 
 .btn {
   border-color: rgba(0, 0, 0, 0.6);
-  text-shadow: 1px 1px 1px rgb(0 0 0 / 30%);
+  /* text-shadow: 1px 1px 1px rgb(0 0 0 / 30%); */
 }
 .btn-light {
   color: #000;
