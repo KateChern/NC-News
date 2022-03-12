@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import * as api from "../../apis/apis";
 import classes from "./Auth.module.css";
+import { useNavigate } from "react-router-dom";
 
 const AuthForm = ({ onChangeUser, user }) => {
   const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  const navigate = useNavigate();
   const changeUserHandler = (e) => {
     onChangeUser(e.target.value);
   };
@@ -44,6 +45,12 @@ const AuthForm = ({ onChangeUser, user }) => {
           );
         })}
       </select>
+      <button
+        className={`${classes.btn} ${classes["btn-light"]}`}
+        onClick={() => navigate(-1)}
+      >
+        Go back
+      </button>
     </div>
   );
 };

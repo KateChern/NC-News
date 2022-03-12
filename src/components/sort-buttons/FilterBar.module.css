@@ -50,9 +50,10 @@
 
 @media only screen and (min-width: 1440px) {
   .topics-container {
-    font-size: 1.5rem;
-    justify-content: space-around;
-    max-width: 60%;
+    font-size: 1.3rem;
+    justify-content: space-between;
+    /* max-width: 60%; */
     margin: 0 auto;
+    width: 900px;
   }
 }
