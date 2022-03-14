@@ -24,7 +24,7 @@ A hosted version of the back end can be found here: https://northcoders-news-b-e
 NC-News is responsive with a mobile first approach.
 <br>
 
-### The home page loads all the available articles on the data base.
+1. The home page loads all the available articles on the data base.
 
 Articles can be then:
 
@@ -32,9 +32,10 @@ Articles can be then:
 - Sorted by order or
 - Sorted by other criterias.
 
-Each `article` has user curated ratings and `can be up or down voted` using the API. <br> `Comments` can also be `up or down voted`. <br> In order to vote on a post or a comment as well as `post a comment` the user needs to `login`. <br> A user can `remove` any comments which they have added.
-<br>
-<br>
+2. Each `article` has user curated ratings and `can be up or down voted` using the API. <br> 
+3. `Comments` can also be `up or down voted`. <br> 
+4. In order to vote on a post or a comment as well as `post a comment` the user needs to `login`. <br> 
+5. A user can `remove` any comments which they have added.
 
 ## Setup
 
