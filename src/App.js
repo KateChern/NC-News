@@ -8,6 +8,7 @@ import FilterBar from "./components/sort-buttons/FilterBar";
 import FilteredArticlesList from "./components/articles/FilteredArticles";
 import AuthForm from "./components/auth/AuthForm";
 import ArticlePage from "./components/articles/ArticlePage";
+import ErrorPage from "./components/ErrorPage";
 
 function App() {
   const [order, setOrder] = useState("asc");
@@ -63,6 +64,7 @@ function App() {
             exact
             element={<ArticlePage user={user} />}
           />
+          <Route path="*" element={<ErrorPage />} />
         </Routes>
       </div>
     </Router>
