@@ -6,32 +6,22 @@ import Skeleton from "react-loading-skeleton";
 const FilterBar = () => {
   const [allTopics, setAllTopics] = useState([]);
   const [error, setError] = useState(null);
-  // const [isLoading, setIsLoading] = useState(false);
 
   const getAllTopics = () => {
-    // setIsLoading(true);
     api
       .fetchTopics()
       .then((data) => {
         setAllTopics(data);
         setError(null);
-        // setIsLoading(false);
       })
       .catch((error) => {
         setError(error.response.data.msg);
-        // setIsLoading(false);
       });
   };
   useEffect(() => {
     getAllTopics();
   }, []);
-  // if (isLoading)
-  //   return (
-  //     <div className={classes["topics-container"]}>
-  //       {" "}
-  //       <Skeleton height={260} />{" "}
-  //     </div>
-  //   );
+
   if (error) return <p className={classes.msg}>{error} </p>;
   return (
     <div className={classes["topics-container"]}>
