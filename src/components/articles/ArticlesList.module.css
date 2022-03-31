@@ -67,7 +67,15 @@ dt {
   font-family: "Average Sans", Sans-Serif;
   padding: 0px 5px;
 }
-
+.msg {
+  font-family: "Average Sans", Sans-Serif;
+  color: #878792;
+  font-size: 1.2rem;
+}
+.msg :hover {
+  color: var(--bs-blue);
+  transition: color 0.15s ease-in;
+}
 @media only screen and (min-width: 960px) {
   .container {
     grid-template-columns: repeat(auto-fit, minmax(370px, 1fr));
@@ -77,6 +85,9 @@ dt {
   .header {
     margin: 3rem auto 2rem auto;
     font-size: 1.3rem;
+  }
+  .msg {
+    font-size: 1.4rem;
   }
 }
 
@@ -97,5 +108,8 @@ dt {
   .header {
     margin: 6rem auto 4rem auto;
     font-size: 1.5rem;
+  }
+  .msg {
+    font-size: 1.6rem;
   }
 }
