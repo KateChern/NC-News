@@ -4,6 +4,7 @@ import classes from "./articles/ArticlesList.module.css";
 const SkeletonCard = () => {
   return (
     <section className={classes.container}>
+      <p className={classes.msg}>Loading...</p>
       {Array(9)
         .fill()
         .map((item, index) => (
