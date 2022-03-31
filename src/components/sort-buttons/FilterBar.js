@@ -5,7 +5,6 @@ import classes from "./FilterBar.module.css";
 
 const FilterBar = () => {
   const [allTopics, setAllTopics] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
   const getAllTopics = () => {
@@ -13,18 +12,16 @@ const FilterBar = () => {
       .fetchTopics()
       .then((data) => {
         setAllTopics(data);
-        setIsLoading(false);
         setError(null);
       })
       .catch((error) => {
         setError(error.response.data.msg);
-        setIsLoading(false);
       });
   };
   useEffect(() => {
     getAllTopics();
   }, []);
-  // if (isLoading) return <p className={classes.msg}>Loading...</p>;
+
   if (error) return <p className={classes.msg}>{error} </p>;
   return (
     <div className={classes["topics-container"]}>
