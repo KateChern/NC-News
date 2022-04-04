@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import * as api from "../../apis/apis";
 import classes from "./FilterBar.module.css";
-import Skeleton from "react-loading-skeleton";
+
 const FilterBar = () => {
   const [allTopics, setAllTopics] = useState([]);
   const [error, setError] = useState(null);
